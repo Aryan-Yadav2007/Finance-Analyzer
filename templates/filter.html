@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filter Transactions</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+  </head>
+  <body>
+    <div class="filterHead">
+      <h2>Finalyze</h2>
+      <h4>Know your Money -</h4>
+      <h4>Analyze Smart -</h4>
+      <h4>Spend Smart</h4>
+    </div>
+    <div class="filterSection">
+      <div class="sectionWrapper">
+        <!-- <a href="{{url_for('typeFilter')}}"> -->
+        <h3 id="typeHeading">Filter by Income</h3>
+        <!-- </a> -->
+      </div>
+      <div class="sectionWrapper">
+        <!-- <a href="{{url_for('dateFilter')}}"> -->
+        <h3 id="dateHeading">Filter by Expense</h3>
+        <!-- </a> -->
+      </div>
+      <div class="sectionWrapper">
+        <h3 id="maxAmount">Maximum Expense</h3>
+      </div>
+      <div class="sectionWrapper">
+        <h3 id="maxAmountIncome">Maximum Income</h3>
+      </div>
+      <div id="content"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("typeHeading")
+        .addEventListener("click", function () {
+          fetch("/incomeFilter").then((response) =>
+            response.text().then((data) => {
+              document.getElementById("content").innerHTML = data;
+            }),
+          );
+        });
+
+      document
+        .getElementById("dateHeading")
+        .addEventListener("click", function () {
+          console.log("clicked");
+          fetch("/expenseFilter")
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              document.getElementById("content").innerHTML = data;
+            });
+        });
+
+      document
+        .getElementById("maxAmount")
+        .addEventListener("click", function () {
+          fetch("/MaxExpense")
+            .then((response) => response.text())
+            .then((data) => {
+              document.getElementById("content").innerHTML = data;
+            });
+        });
+      document
+        .getElementById("maxAmountIncome")
+        .addEventListener("click", function () {
+          fetch("/MaxIncome")
+            .then((response) => response.text())
+            .then((data) => {
+              document.getElementById("content").innerHTML = data;
+            });
+        });
+    </script>
+  </body>
+</html>

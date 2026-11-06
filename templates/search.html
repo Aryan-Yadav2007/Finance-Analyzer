@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Transactions</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+  </head>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    /* This aligns headers and data cells to the exact same starting point */
+    th,
+    td {
+      padding: 12px;
+      text-align: left; /* Aligns all text neatly to the left */
+      border-bottom: 1px solid #ddd;
+      font-family:
+        "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+    th {
+      font-family:
+        "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div class="searchHeader">
+      <h2>Finalyze</h2>
+      <h4>Know your Money -</h4>
+      <h4>Analyze Smart -</h4>
+      <h4>Spend Smart</h4>
+    </div>
+    <div class="searchHeading">
+      <h3>Search Transactions</h3>
+    </div>
+    <div class="searchBar">
+      <form action="/search" method="post">
+        <input type="text" placeholder="Search Transactions..." name="search" />
+        <button type="submit">Go</button>
+      </form>
+    </div>
+    <div class="searchResults">
+      <table>
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for transaction in transactions %}
+          <tr>
+            <td>{{ transaction["amount"] }}</td>
+            <td>{{ transaction["type"] }}</td>
+            <td>{{ transaction["description"] }}</td>
+            <td>{{ transaction["date"] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

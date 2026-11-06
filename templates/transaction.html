@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='/style.css')}}" />
+  </head>
+  <body>
+    <div class="transactionHead">
+      <h2>Finalyze</h2>
+      <h4>Know your Money -</h4>
+      <h4>Analyze Smart -</h4>
+      <h4>Spend Smart</h4>
+      <div class="headerLinks">
+        <a href="{{url_for('history')}}"
+          ><img src="/static/images/clock.svg" alt=""
+        /></a>
+        <a href="{{url_for('summary')}}"
+          ><img src="/static/images/summary.svg" alt=""
+        /></a>
+        <a href="{{url_for('search')}}"
+          ><img src="/static/images/search.svg" alt=""
+        /></a>
+        <a href="{{url_for('analysis')}}"
+          ><img src="/static/images/charts.svg" alt=""
+        /></a>
+        <a href="{{url_for('filter')}}"
+          ><img src="/static/images/filter.svg" alt=""
+        /></a>
+      </div>
+    </div>
+    <div class="transactionHeading">
+      <div class="div">
+        <h3>Transactions</h3>
+      </div>
+    </div>
+    <div class="transactionForm">
+      <div class="div">
+        <form action="/submit" method="post">
+          <input
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            placeholder="Amount"
+            name="amount"
+          />
+          <select name="type">
+            <option value="" disabled selected hidden>Type</option>
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+          <textarea name="description" placeholder="Description"></textarea>
+          <input type="date" name="date" />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="Barimg">
+        <!-- <img src="/static/images/Bar Graphs.png" alt="" /> -->
+      </div>
+    </div>
+  </body>
+</html>
